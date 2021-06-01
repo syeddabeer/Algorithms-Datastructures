@@ -7,9 +7,10 @@ Output: 2.00000
 Explanation: merged array = [1,2,3] and median is 2.
 """
 class Solution:
-    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        for j in range(0, len(nums2), 1):
-            nums1.append(nums2[j])
+    def findMedianSortedArrays(self, nums1, nums2):
+#         for j in range(0, len(nums2), 1):
+#             nums1.append(nums2[j])
+        nums1.extend(nums2)
         nums1.sort()
         return self.findmedian(nums1)
 
