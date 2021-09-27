@@ -1,7 +1,5 @@
 """
-    Demonstration of Linked Lists in Python.
-
-    Author: George Heineman
+Demonstration of Linked Lists in Python by Dabeeruddin Syed
 """
 class LinkedNode:
     def __init__(self, value, tail = None):
