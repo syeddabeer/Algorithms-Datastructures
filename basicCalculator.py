@@ -3,21 +3,38 @@ class Solution:
         num, ope, stack = 0, '+', []
         
         for cnt, i in enumerate(s):
+            print(cnt, " ", i)
+            
             if i.isnumeric():
-                num = num * 10 + int(i)
-            if i in '+-*/' or cnt == len(s) - 1:
+                num=num*10+int(i)
+                print("num ", num)
+                
+            if i in '+-*/' or cnt==len(s)-1:
                 if ope == '+':
                     stack.append(num)
-                elif ope == '-':
+                    print(stack)
+                    
+                if ope == '-':
                     stack.append(-num)
-                elif ope == '*':
-                    j = stack.pop() * num
-                    stack.append(j)
-                elif ope == '/':
-                    j = int(stack.pop() / num)
-                    stack.append(j)
-            
-                ope = i
-                num = 0
-       
+                    print(stack)
+                    
+                if ope == '*':
+                    temp=stack.pop()*num
+                    stack.append(temp)
+                    print(stack)
+                    
+                if ope=='/':
+                    temp=int(stack.pop()/num)
+                    stack.append(temp)
+                    print(stack)
+                    
+                ope=i
+                num=0
         return sum(stack)
+                
+            
+            
+            
+s="32+2*2"
+sol=Solution()
+sol.calculate(s)
