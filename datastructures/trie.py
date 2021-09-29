@@ -8,11 +8,11 @@ class Trie:
         self.root=TrieNode()
         
     def insert(self, word):
-        node=self.root
+        node=self.root #initialize node iterator
         for char in word:
             if char not in node.children:
-                node.children[char] = TrieNode()
-            node=node.children[char]
+                node.children[char] = TrieNode() #insert char by char
+            node=node.children[char]   #increment
         node.isEnd=True
         
     
@@ -21,10 +21,10 @@ class Trie:
         for char in word:
             if char not in node.children:
                 return False
-            node=node.children[char]
-        return node.isEnd
+            node=node.children[char]  #iterate when prior char is found in the trie
+        return node.isEnd              # returns True if arrived at end
     
-    def startswith(self, prefix):
+    def startsWith(self, prefix):
         node=self.root
         for char in prefix:
             if char not in node.children:
@@ -43,7 +43,7 @@ class Trie:
             if word[i] not in node.children: # word is not in trie
                 return False
                 
-            need_delete = recursive(node.children[word[i]], word, i + 1)
+            need_delete = recursive(node.children[word[i]], word, i + 1)   #to iterate forward node.children[word[i]]
             
             if need_delete:
                 node.children.pop(word[i])
