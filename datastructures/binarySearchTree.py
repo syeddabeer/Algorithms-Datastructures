@@ -12,25 +12,31 @@ O(n) - for iteration
 
 """
 	Author: Dabeeruddin Syed
-    Code based on class of George Heineman    
+    Code based on class of George Heineman
+    The code uses recursion a lot.
+    root, left, right are pointers. 
 """
 class BinaryNode:
 
+	# first function
     def __init__(self, value):
         """Create binary node."""
         self.value   = value
+        # left and right are pointers here. Also, root is a pointer.
         self.left    = None
         self.right   = None
 
+    # IV function - when self.root.add function is called.
     def add(self, val):
         """
-        Add a new node to the tree with value. Respond based on Set semantics
+        Add a new node to the tree with value. Respond based on Set semantics, less equal or greater than.
         """
         if val <= self.value:
             self.left = self.addToSubTree(self.left, val)
         elif val > self.value:
             self.right = self.addToSubTree(self.right, val)
 
+    # V function - when self.root.add function is called.
     def addToSubTree(self, parent, val):
         """Add val to parent subtree (if exists) and return root of that subtree."""
         if parent is None:
@@ -39,7 +45,7 @@ class BinaryNode:
         parent.add(val)
         return parent
 
-
+    # VII function - when self.root.remove function is called.
     # add the element with the largest value from the left sub tree
     def remove(self, val):
         """
@@ -63,6 +69,7 @@ class BinaryNode:
         
         return self
 
+    # VIII function
     def removeFromParent(self, parent, val):
         """Helper method for remove. Ensures proper behavior when removing node that 
         has children."""
@@ -93,11 +100,12 @@ class BinaryNode:
                 yield v
 
 class BinaryTree:
-
+	# II function
     def __init__(self):
         """Create empty binary tree."""
         self.root = None
-   
+   	
+   	# III function
     def add(self, value):
         """Insert value into proper location in Binary Tree."""
         if self.root is None:
@@ -105,6 +113,7 @@ class BinaryTree:
         else:
             self.root.add(value)
 
+    # VI function
     def remove(self, val):
         """Remove value from tree."""
         if self.root:
