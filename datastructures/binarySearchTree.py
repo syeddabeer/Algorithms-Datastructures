@@ -18,7 +18,7 @@ O(n) - for iteration
 """
 class BinaryNode:
 
-	# first function
+	# I function
     def __init__(self, value):
         """Create binary node."""
         self.value   = value
@@ -56,6 +56,9 @@ class BinaryNode:
         elif val > self.value:
             self.right = self.removeFromParent(self.right, val)
         else:
+
+        	# when the val is equal to the search value
+        	# find the largest value in the left subtree
             if self.left is None:
                 return self.right
 
@@ -69,7 +72,7 @@ class BinaryNode:
         
         return self
 
-    # VIII function
+    # VIII function - finish with __contains__ function
     def removeFromParent(self, parent, val):
         """Helper method for remove. Ensures proper behavior when removing node that 
         has children."""
@@ -137,6 +140,7 @@ class BinaryTree:
             n = n.right
         return n.value
     
+    # IX function - finish with this function
     def __contains__(self, target):
         """Check whether BST contains target value."""
         node = self.root
