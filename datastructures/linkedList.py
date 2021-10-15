@@ -1,6 +1,10 @@
 """
 Demonstration of Linked Lists in Python by Dabeeruddin Syed
 """
+
+# Stack
+# Last in First out
+
 class LinkedNode:
     def __init__(self, value, tail = None):
         """Node in a Linked List."""
