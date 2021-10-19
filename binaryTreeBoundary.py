@@ -1,15 +1,67 @@
 #Boundary of a binary tree
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
 class Solution:
-	def __init__():
+	def __init__(self):
+		# initializing the arrays to concat at the final stage
+		self.left=[]
+		self.right=[]
+		self.children=[]
 
-	def left_boundary():
+	def left_boundary(self, root):
+		if not root:
+			return
 
-	def right_boundary():
+		if root.left is None and root.right is None:
+			return
 
-	def children_boundary():
+		# if one of above condition fails
+		self.left.append(root.val)
 
-	def boundaryOfBinaryTree():
+		if root.left:
+			self.left_boundary(root.left)
+		else:
+			self.left_boundary(root.right)
+
+	def right_boundary(self, root):
+		if not root:
+			return
+
+		if root.left is None and root.right is None:
+			return
+
+		self.right.append(root.val)
+
+		if root.right:
+			self.right_boundary(root.right)
+
+		else:
+			self.right_boundary(root.left)
+
+	def children_boundary(self, root, head):
+		if not root:
+			return
+
+		if root!=head and root.left is None and root.right is None: #leaf node
+			self.children.append(root.val)
+			return
+
+		self.children_boundary(root.left, head)
+		self.children_boundary(root.right, head)
+
+	def boundaryOfBinaryTree(self, root):
+		res = []
+		res.append(root.val)
+		self.left_boundary(root.left)
+		self.children_boundary(root, root)
+		self.right_boundary(root.right)
+
+		res += self.left + self.children + self.right[::-1]
+		return res
 		
 
 """
@@ -19,7 +71,7 @@ the reverse order of the right boundary.
 The left boundary is the set of nodes defined by the following:
 
 The root node's left child is in the left boundary. If the root does not have a 
-eft child, then the left boundary is empty. If a node in the left boundary and 
+left child, then the left boundary is empty. If a node in the left boundary and 
 has a left child, then the left child is in the left boundary. If a node is in 
 the left boundary, has no left child, but has a right child, then the right 
 child is in the left boundary.The leftmost leaf is not in the left boundary.
