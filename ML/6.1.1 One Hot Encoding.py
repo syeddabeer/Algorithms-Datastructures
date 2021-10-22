@@ -22,7 +22,7 @@ results = np.zeros(shape=(len(samples), max_length, max(token_index.values()) + 
 	))
 print(results)
 for i, sample in enumerate(samples):
-	for j, word in list(enumerate(sample.split())):
+	for j, word in list(enumerate(sample.split()))[:max_length]:
 		print("j: ", j, "word: ", word)
 		index = token_index[word]
 		results[i,j,index]=1
