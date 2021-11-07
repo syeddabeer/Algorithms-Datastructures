@@ -48,7 +48,7 @@ class LinkedList:
         last = None
         while n != None:
             if n.value == value:
-                if last == None:
+                if last == None: # first element is the value that needs removal
                     self.head = self.head.next
                 else:
                     last.next = n.next

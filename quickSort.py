@@ -1,5 +1,7 @@
 #quick sort algorithm
 # select divide and conquer algorithm
+# last element is the pivot
+# creates lesser equal greater arrays and uses recursive approach
 def quicksort(arr):
     """
     this is not an inplace implementation

@@ -14,9 +14,9 @@ def mergesort(arr):
 	half_a = mergesort(firsthalf)
 	half_b = mergesort(secondhalf)
 	
-	return merge(half_a, half_b)
+	return sortedMerge(half_a, half_b)
 	
-def merge(sublist1, sublist2):
+def sortedMerge(sublist1, sublist2):
 	i = j = 0
 	mergedlist = []
 	

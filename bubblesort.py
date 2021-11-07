@@ -1,3 +1,5 @@
+# bubble sort - iterates from first element to last element
+# swaps neighboring elements only
 def bubbleSort(arr):
     swapFlag = True
     while swapFlag:
