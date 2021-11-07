@@ -1,7 +1,7 @@
 # #pairs with certain sum
 from collections import defaultdict
 class FindSumPairs:
-	def __init__(self, nums1 , nums2 ):
+	def __init__(self, nums1, nums2):
 		self.nums1 = sorted(nums1) #index of nums1 is not significant.
 		self.nums2 = nums2
 		self.hash2 = defaultdict(int)
@@ -11,7 +11,7 @@ class FindSumPairs:
 
 	def add(self, index: int, val: int) -> None:
 		self.hash2[self.nums2[index]] -= 1 #decrease the occurence of addant by 1
-		self.num2[index] += val
+		self.nums2[index] += val
 		self.hash2[self.nums2[index]] += 1 #increase the occurence of addant by 1
 
 	def count(self, tot:int)->int:
