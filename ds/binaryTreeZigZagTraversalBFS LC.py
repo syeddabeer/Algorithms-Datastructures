@@ -1,3 +1,7 @@
+# traversal types -
+# preorder: Root -> Left -> Right
+# inorder: Left -> Root -> Right
+# postorder: Left -> Right -> Root
 from collections import deque
 
 class Solution:

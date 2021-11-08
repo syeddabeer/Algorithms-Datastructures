@@ -27,25 +27,21 @@ class BinaryNode:
         self.right   = None
 
     # IV function - when self.root.add function is called.
-    def add(self, val):
-        """
-        Add a new node to the tree with value. Respond based on Set semantics, less equal or greater than.
-        """
-        if val <= self.value:
-            self.left = self.addToSubTree(self.left, val)
-        elif val > self.value:
-            self.right = self.addToSubTree(self.right, val)
+    def add(self, value):
+        if value < self.value :
+            if self.left is None:
+                self.left = BinaryNode(value)
+            else:
+                self.left.add(value)
+        elif value > self.value :
+            if self.right is None:
+                self.right = BinaryNode(value)
+            else:
+                self.right.add(value)
+        else:
+            return
 
-    # V function - when self.root.add function is called.
-    def addToSubTree(self, parent, val):
-        """Add val to parent subtree (if exists) and return root of that subtree."""
-        if parent is None:
-            return BinaryNode(val)
-
-        parent.add(val)
-        return parent
-
-    # VII function - when self.root.remove function is called.
+    # VI function - when self.root.remove function is called.
     # add the element with the largest value from the left sub tree
     def remove(self, val):
         """
@@ -72,7 +68,7 @@ class BinaryNode:
         
         return self
 
-    # VIII function - finish with __contains__ function
+    # VII function - finish with __contains__ function
     def removeFromParent(self, parent, val):
         """Helper method for remove. Ensures proper behavior when removing node that 
         has children."""
@@ -116,7 +112,7 @@ class BinaryTree:
         else:
             self.root.add(value)
 
-    # VI function
+    # V function
     def remove(self, val):
         """Remove value from tree."""
         if self.root:
@@ -140,7 +136,7 @@ class BinaryTree:
             n = n.right
         return n.value
     
-    # IX function - finish with this function
+    # VIII function - finish with this function
     def __contains__(self, target):
         """Check whether BST contains target value."""
         node = self.root
@@ -188,8 +184,13 @@ class BinaryTree:
             return "binary:()"
         return "binary:" + str(self.root)
 
-"""
-Change Log:
------------
+#driver code
+myTree=BinaryTree()
+myTree.add(50)
+print(myTree)
+myTree.add(25)
+myTree.add(75)
+print(myTree)
 
-"""
+# binary:(L:(L: 25 R:) 50 R:(L: 75 R:))
+# [Finished in 987ms]
