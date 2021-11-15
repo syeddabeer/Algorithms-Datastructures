@@ -1,7 +1,7 @@
 # divide and conquer method
 # here there is no select pivot like the quick sort
 # divide lists into half, then half, then half, until there is one element only
-# then we start to merge the lists
+# then we start to merge the lists based on the sublists and for elements with less value.
 
 def mergesort(arr):
 	if len(arr)<=1:
