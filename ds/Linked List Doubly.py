@@ -1,6 +1,6 @@
-# Dabeeruddin Syed
+# Dabeeruddin Syed # Doubly linked list # Bi-directional linked list
 
-class Node(object):
+class LinkedNode(object):
     # Each node has its value and a pointer that points to next node in the Linked List
     def __init__(self, value, next = None, previous = None):
         self.value = value;
@@ -14,17 +14,17 @@ class DoublyLinkedList(object):
     # for inserting at the beginning of linked list
     def insertAtStart(self, value):
         if self.head == None:
-            newNode = Node(value)
-            self.head = newNode
+            self.head = LinkedNode(value)
         else:
-            newNode = Node(value)
-            self.head.previous = newNode
+            newNode = LinkedNode(value)
             newNode.next = self.head
+            self.head.previous = newNode
             self.head = newNode
 
     # for inserting at the end of linked list
     def insertAtEnd(self, value):
-        newNode = Node(value)
+        newNode = LinkedNode(value)
+        # start from head and traverse along the list
         temp = self.head
         while(temp.next != None):
             temp = temp.next
@@ -34,6 +34,10 @@ class DoublyLinkedList(object):
     # deleting a node from linked list
     def delete(self, value):
         temp = self.head
+        # null linked list 
+        if (temp == None):
+            return
+
         if(temp.next != None):
             # if head node is to be deleted
             if(temp.value == value):
@@ -58,8 +62,7 @@ class DoublyLinkedList(object):
                     temp.previous = None
                 return
 
-        if (temp == None):
-            return
+
 
     # for printing the contents of linked lists
     def printdll(self):
