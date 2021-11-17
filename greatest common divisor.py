@@ -10,8 +10,15 @@ def gcd_naive(a, b):
 				# we will loop for all values. we want greatest of CD.
 	return temp_gcd
 
+def gcd_fast(a,b):
+	if b == 0:
+		return a 
+	modulus = a%b
+	return gcd_fast(b, modulus)
+
 if __name__ == '__main__':
-	# input = sys.stdin.read()
-	# a, b = map(int, input.split())
-	a, b = 16, 144
-	print(gcd_naive(a,b))
+	input = sys.stdin.read()
+	a, b = map(int, input.split())
+	# a, b = 16, 144
+	# print(gcd_naive(a,b))
+	print(gcd_fast(a,b))
