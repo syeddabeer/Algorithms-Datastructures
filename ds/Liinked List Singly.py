@@ -82,5 +82,9 @@ class LinkedList:
 
 ############ RUNNING TIME
 """
-
+prepend    - O(1)
+pop        - O(1)
+append     - O(n)
+pop at end - O(n)
+search     - O(n)
 """
