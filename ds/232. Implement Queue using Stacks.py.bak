@@ -1,4 +1,5 @@
 class QueueUsingStack(object):
+    # anchor cuts the stack array into popped partition and remaining partition
     def __init__(self):
         self.stack = []
         self.anchor = 0
@@ -7,12 +8,17 @@ class QueueUsingStack(object):
         self.stack.append(x)
         return
     
-    def pop():
+    def pop(self):
+        self.anchor += 1
+        return self.stack[self.anchor-1]
     
     def peek():
+        return self.stack[self.anchor]
     
     
     def empty():
+        return self.anchor >= len(self.stack)
+        
 """
 Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
 

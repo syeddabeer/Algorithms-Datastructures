@@ -12,11 +12,11 @@ class QueueUsingStack(object):
         self.anchor += 1
         return self.stack[self.anchor-1]
     
-    def peek():
+    def peek(self):
         return self.stack[self.anchor]
     
     
-    def empty():
+    def empty(self):
         return self.anchor >= len(self.stack)
         
 """
