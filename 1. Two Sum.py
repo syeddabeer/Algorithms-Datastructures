@@ -6,15 +6,20 @@ class Solution:
                 if nums[j]==target-nums[i]:
                     return [i,j]
 # above - time complexity - O(n^2)
-                   
+ # above - space complexity - O(1)                  
 #hashmap
 class Solution:
     def twoSum(self, nums, target):
         dict={}
-        for i in
+        for i in range(len(nums)):
+            dict[nums[i]]=i
+        for j in range(len(nums)):
+            complement = target - nums[j]
+            if complement in dict and dict[complement]!=j:
+                return [j, dict[complement]]
         
 # above - time complexity - O(n)
-
+ # above - space complexity - O(n) 
 """
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
