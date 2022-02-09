@@ -9,5 +9,5 @@ def fibonacci(n, result=[0,1]):
 
 if __name__ == '__main__':
     # input_n = int(input())
-    input_n = 1
+    input_n = 5
     print(fibonacci(input_n))
