@@ -2,7 +2,8 @@ class Solution:
     def longestCommonPrefix(self, strs):
         #["flower","flow","flight"]
         prefix=""
-        for i in zip(strs*):
+        reflist = list(zip(strs*))
+        for i in reflist:
             if len(set(i))==1:
                 prefix+=i[0]
             else:
