@@ -23,7 +23,7 @@ class Solution:
                 results.append([node.val])
             elif level%2 != 0: #odd level: Right to left
                 results[level].insert(0,node.val)
-            else: #even level: Left to Right
+            elif level%2==0: #even level: Left to Right
                 results[level].extend([node.val])
             dfs(node.left, level+1)
             dfs(node.right, level+1)

@@ -17,7 +17,7 @@ class Solution:
         results=[]
         
         def dfs(node, level):
-            if not node:
+            if node is None:
                 return
             elif level >= len(results):
                 results.append([node.val])
