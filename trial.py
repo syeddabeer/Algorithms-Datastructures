@@ -1,29 +1,31 @@
-class LinkedNode:
-    def __init__(self, value, next=None, previous=None):
-        self.value = value
-        self.next = next 
-        self.previous = previous
+# traversal of tree in zig zag order - depth first search
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val 
+        self.left = left 
+        self.right = right 
+class Tree:
+    def zigzagLevelOrder(self, root):
+        # boundary condition
+        if root is None:
+            return
+        results=[]
+        def dfs(node, level):
+            if node is None:
+                return
+            elif level>=len(results):
+                results.append([node.val])
+            elif level%2==0: #even -> left to right
+                results[level].extend([node.val])
+            elif level%2!=0: #odd - right to left
+                results[level].insert(0, node.val)
 
-class DoublyLinkedList:
-    def __init__(self):
-        self.head = None 
+            dfs(node.left, level+1)
 
-    def insertAtStart(self, value):
-        if self.head == None:
-            self.head = LinkedNode(value)
-        else:
-            newNode = LinkedNode(value)
-            newNode.next = self.head 
-            self.head.previous = newNode
-            self.head = newNode
-
-    def insertAtEnd(self, value):
-        newNode = LinkedNode(value)
-
-        temp = self.head 
-        while temp.next != Node
-            temp=temp.next 
-        temp.next = newNode
+            dfs(node.right, level+1)
 
 
-    def delete(self, value):
+
+        dfs(root, 0)
+
+        return results
