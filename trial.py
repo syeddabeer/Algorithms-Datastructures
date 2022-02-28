@@ -1,31 +1,39 @@
-# traversal of tree in zig zag order - depth first search
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val 
-        self.left = left 
-        self.right = right 
-class Tree:
-    def zigzagLevelOrder(self, root):
-        # boundary condition
-        if root is None:
-            return
-        results=[]
-        def dfs(node, level):
-            if node is None:
-                return
-            elif level>=len(results):
-                results.append([node.val])
-            elif level%2==0: #even -> left to right
-                results[level].extend([node.val])
-            elif level%2!=0: #odd - right to left
-                results[level].insert(0, node.val)
+from collections import defaultdict
+class Solution:
+    def isNStraightHand(self, hand, groupSize):
+        hand.sort()
+        n=len(hand)
+        frequency=defaultdict(int)
 
-            dfs(node.left, level+1)
+        for i in hand:
+            frequency[i] = frequency.get(i,0)+1
 
-            dfs(node.right, level+1)
+            # {1:1, 2:2, 3:2, 4:1, 6:1, 7:1, 8:1}
 
+        for i in range(n):
+            if frequency[hand[i]]!=0:
+                for j in range(hand[i], hand[i]+groupSize):
+                    if frequency[j]==0:
+                        return False
+                    frequency-=1
+        return True
+        
 
+"""
+Alice has some number of cards and she wants to rearrange the cards into groups so that each group is of size groupSize, and consists of groupSize consecutive cards.
 
-        dfs(root, 0)
+Given an integer array hand where hand[i] is the value written on the ith card and an integer groupSize, return true if she can rearrange the cards, or false otherwise.
 
-        return results
+ 
+
+Example 1:
+
+Input: hand = [1,2,3,6,2,3,4,7,8], groupSize = 3
+Output: true
+Explanation: Alice's hand can be rearranged as [1,2,3],[2,3,4],[6,7,8]
+Example 2:
+
+Input: hand = [1,2,3,4,5], groupSize = 4
+Output: false
+Explanation: Alice's hand can not be rearranged into groups of 4.
+"""
