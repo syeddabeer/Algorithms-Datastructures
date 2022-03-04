@@ -1,14 +1,22 @@
-class Solution:
-    def reorderLogFiles(self, logs):
-        digits = []
-        letters = []
-        for log in logs:
-            if log.split()[1].isdigit():
-                digits.append(log)
-            else:
-                letters.append(log)
+class TrieNode:
+    def __init__(self):
+        self.children={}
+        self.isEnd=False 
 
-        letters.sort(key=lambda x: x.split()[0])
-        letters.sort(key=lambda x: x.split()[1:])
-        result=letters+digits
-        return result
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self, word):
+        node = self.root 
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+                
+        
+    def search:
+    
+    def startswith:
+    
+    def remove:
+    
