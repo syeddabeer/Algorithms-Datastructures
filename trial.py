@@ -1,9 +1,5 @@
-class NestedIterator(object):
+class NestedIterator:
     def __init__(self, nestedList):
-        """
-        Initialize your data structure here.
-        :type nestedList: List[NestedInteger]
-        """
         def flatten(nl):
             tmp=[]
             for i in nl:
@@ -11,17 +7,11 @@ class NestedIterator(object):
                     tmp.append(i)
                 else:
                     tmp.extend(flatten(i.getList()))
-            return tmp 
-        self.n = flatten(nestedList)  
+            return tmp
 
+        self.n = flatten(nestedList)
     def next(self):
-        """
-        :rtype: int
-        """
         return self.n.pop(0)
-      
+
     def hasNext(self):
-        """
-        :rtype: bool
-        """
-        return self.n
+        return len(self.n)>0
