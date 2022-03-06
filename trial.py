@@ -1,29 +1,21 @@
 class Solution:
-    def candyCrush(self, M):
-        while True:
-            #break
-            #1. compare
-            crush = set()
-            for i in range(len(M)):
-                for j in range(len(M[0])):
-                    if i>1 and M[i][j] and M[i][j]==M[i-1][j]==M[i-2][j]:
-                        crush |= {(i,j), (i-1, j), (i-2, j)}
-                    if j>1 and M[i][j] and M[i][j]==M[i][j-1]==M[i][j-2]:
-                        crush |= {(i,j), (i,j-1), (i,j-2)}
+    def findDistance(self, root, p, q):
+        def dfs(node): # lowest common ancestor
+            if node is None or node.val==p or node.val==q:
+                return node
+            left = dfs(node.left)
+            right = dfs(node.right)
+            if left and right:
+                return node 
+            else:
+                return left or right
 
-            #2. crush
-            if not crush:
-                break
-            for i, j in crush:
-                M[i][j]=0
-
-            # 3. drop
-            for j in range(len(M[0])):
-                idx=len(M)-1
-                for i in reversed(range(len(M))):
-                    if M[i][j]: 
-                        M[idx][j]=M[i][j]
-                        idx-=1
-                for i in range(idx+1): M[i][j]=0
-
-        return M
+        def dist(node, target):
+            if not node:
+                return float('inf')
+            if node.val==target:
+                return 0
+            return 1+min(dist(node.left, target), dist(node.right, target))
+            
+        lca = dfs(root)
+        return dist(lca, p) + dist(lca, q)
