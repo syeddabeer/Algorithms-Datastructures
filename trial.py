@@ -1,21 +1,29 @@
-class Solution:
-    def findDistance(self, root, p, q):
-        def dfs(node): # lowest common ancestor
-            if node is None or node.val==p or node.val==q:
-                return node
-            left = dfs(node.left)
-            right = dfs(node.right)
-            if left and right:
-                return node 
-            else:
-                return left or right
+from threading import Condition
+class BoundededBlockingQueue:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.q = []
+        self.c1 = Condition()
+        self.c2 = Condition()
 
-        def dist(node, target):
-            if not node:
-                return float('inf')
-            if node.val==target:
-                return 0
-            return 1+min(dist(node.left, target), dist(node.right, target))
-            
-        lca = dfs(root)
-        return dist(lca, p) + dist(lca, q)
+    def enqueue(self, element):
+        with self.c1:
+            self.c1.wait_for(lambda: len(self.q)<self.capacity)
+            self.q.append(element)
+            self.c1.notify_all()
+
+    def dequeue(self):
+        with self.c2:
+            self.c2.wait_for(lambda: len(self.q)>0)
+            self.q.pop(0)
+            self.c2.notify_all()
+
+    def size(self):
+        return len(self.q)
+
+1
+1
+["BoundedBlockingQueue","enqueue","dequeue","dequeue","enqueue","enqueue","enqueue","enqueue","dequeue"]
+[[2],[1],[],[],[0],[2],[3],[4],[]]
+
+[2, 1]
