@@ -1,0 +1,15 @@
+class Solution:
+    def minimumEffort(self, tasks: List[List[int]]) -> int:
+        sorted_arr = sorted(tasks, key = lambda num: num[0]-num[1])
+        print(sorted_arr)
+        ans = 0
+        store_value = 0
+        print("ans first", ans)
+        for i in sorted_arr:
+           
+            ans += max(i[1]-store_value, 0)
+            store_value = max(i[1]-i[0], store_value - i[0])
+            
+            print("ans", ans)
+        return ans
+    

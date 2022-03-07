@@ -1,0 +1,9 @@
+#Sort Array by Increasing Frequency
+
+
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        counter = collections.Counter(nums)
+        print(counter)
+        #sort based on the counter value and -val indicates decreasing order of value of the array
+        return sorted(nums, key=lambda val: (counter[val], -val))

@@ -1,0 +1,17 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        wc = 1
+        start = 0
+        for i, val in enumerate(chars):
+            if i+1 == len(chars) or val!=chars[i+1]:
+                chars[start] = val
+                start+=1
+                if wc>1:
+                    for c in str(wc):
+                        chars[start] = c
+                        start+=1
+                wc = 1
+            else:
+                wc +=1
+        return start 
+        

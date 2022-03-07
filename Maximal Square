@@ -1,0 +1,13 @@
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+             return 0
+        counter=int(matrix[0][0])
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                matrix[i][j] = int(matrix[i][j])
+                if i>0 and j>0 and matrix[i][j]:
+                    matrix[i][j]= 1 + min(matrix[i][j-1],matrix[i-1][j],matrix[i-1][j-1])
+                counter = max(counter, matrix[i][j])
+        return counter**2   
+    

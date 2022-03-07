@@ -1,0 +1,14 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]: 
+        def recursive(first = 0):
+            if first==len(nums):
+                new.append(nums[:])
+            for i in range(first, len(nums)):
+                nums[first], nums[i] =  nums[i], nums[first]
+                print("first", first)
+                recursive(first+1)
+                nums[first], nums[i] =  nums[i], nums[first]
+            
+        new=[]
+        recursive()
+        return new

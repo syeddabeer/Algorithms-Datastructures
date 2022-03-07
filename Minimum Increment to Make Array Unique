@@ -1,0 +1,13 @@
+class Solution:
+    def minIncrementForUnique(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums.sort()
+        s = nums[0]
+        ans = 0
+        for i in nums:
+            ans = ans + max(0, s-i)
+            # increasing s by one to compare it with the next array with 1 incremented
+            #incrementing the actual values by 1 to be able to get the difference with incremented s
+            s = max(s+1, i+1)
+        return ans

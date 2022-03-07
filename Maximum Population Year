@@ -1,0 +1,7 @@
+class Solution:
+    def maximumPopulation(self, logs: List[List[int]]) -> int:
+        x = [0]*2050
+        for b in logs:
+            for i in range(b[0],b[1]):
+                x[i]=x[i]+1
+        return x.index(max(x))

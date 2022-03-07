@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+my solution 30/35 test cases passed
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #s = "catsandog"
+        #wordDict = ["cats","dog","sand","and","cat"]
+        for i in range(1, len(s)+1):
+            #print(s[0:i])
+            check = s[0:i]
+            if check in wordDict:
+                #print("found", check)
+                s = s.replace(check, "")
+                #print("s", s)
+        if not s:
+            return 1
+        else: 
+            return 0

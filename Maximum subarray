@@ -1,0 +1,31 @@
+#time limit exceeded
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        total_max = sum(nums)
+        print(total_max)
+        if len(nums) ==2:
+            return max(nums[0], nums[1], sum(nums))
+        elif len(nums) ==1:
+            return sum(nums)
+        else:
+            for i in range(len(nums)):
+                max_check = max( [ sum(nums[x:x+i+1]) for x in range(0,len(nums)-i) ] )
+                print(max_check)
+                if max_check>total_max:
+                    total_max = max_check
+            return total_max
+            
+#using dynamic programmin
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        # Initialize our variables using the first element.
+        current_subarray = max_subarray = nums[0]
+        
+        # Start with the 2nd element since we already used the first one.
+        for num in nums[1:]:
+            # If current_subarray is negative, throw it away. Otherwise, keep adding to it.
+            current_subarray = max(num, current_subarray + num)
+            max_subarray = max(max_subarray, current_subarray)
+        
+        return max_subarray

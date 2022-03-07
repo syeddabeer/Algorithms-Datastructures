@@ -1,0 +1,18 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        actual_n = n
+        if x==0 or n==0:
+            return 1
+        elif abs(n)==1:
+            if n==1:
+                return x
+            else:
+                return 1/x
+        elif n % 2 == 0:
+            half=self.myPow(x,n//2)
+            return half * half
+        #case where x is not a multiple of 2 then the remaining times it has to be multiplied by x
+        else:
+            half=self.myPow(x,n//2)
+            return x * half * half
+                

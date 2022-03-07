@@ -1,0 +1,37 @@
+class Solution:
+        def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+            from collections import defaultdict
+            graph = defaultdict(defaultdict)
+            
+            for (num, den), val in zip(equations, values):
+                graph[num][den] = val
+                graph[den][num] = 1/val
+            
+            def finddenval(num, den, prod, visited):
+                visited.add(num)
+                ret = -1.0
+                neighbor = graph[num]
+                if den in neighbor: 
+                    ret = prod*neighbor[den]
+                else:
+                    for neighbor, value in neighbor.items():
+                        if neighbor in visited:
+                            continue
+                        ret = finddenval(neighbor, den, prod*value, visited)
+                        if ret!= -1.0:
+                            break
+
+                visited.remove(num)
+                return ret
+            
+            ans = []
+            for num, den in queries:
+                if num not in graph or den not in graph:
+                    ret = -1.0
+                elif num==den:
+                    ret = 1.0
+                else:
+                    visited = set()
+                    ret = finddenval(num, den, 1, visited)
+                ans.append(ret)
+            return ans

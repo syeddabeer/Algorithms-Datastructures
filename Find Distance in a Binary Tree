@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findDistance(self, root: TreeNode, p: int, q: int) -> int:
+        if not root:
+            return 0
+        def ancestor(root, p, q):
+            if not root:
+                return 0
+            if root.val==p or root.val==q:
+                return root
+            left = ancestor(root.left, p, q)
+            right = ancestor(root.right, p, q)
+            if left and right:
+                return root
+            return left if left else right
+        def dfs(node, target, distance):
+            if not node:
+                return 0
+            if node.val==target:
+                return distance
+            left = dfs(node.left, target, distance+1)
+            right = dfs(node.right, target, distance+1)
+            return left if left else right
+        node = ancestor(root, p, q)
+        return dfs(node, p , 0) + dfs(node, q, 0)

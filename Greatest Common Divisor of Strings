@@ -1,0 +1,11 @@
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        if len(str1) > len(str2): a, b = str1, str2
+        else: a, b = str2, str1
+        while b != "":
+            mod = a
+            while len(mod) >= len(b):
+                if b != mod[:len(b)]: return ""
+                mod = mod[len(b):]
+            a, b = b, mod
+        return a

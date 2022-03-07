@@ -1,0 +1,31 @@
+#House Robber II
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums)<=3:
+            return(max(nums))
+        else:
+            for j in range(len(nums)-1):
+                nums1 = nums[0:len(nums)-1]
+                print(nums)
+                maxRobbedAmount = [None for _ in range(len(nums1)+1)]
+                print(maxRobbedAmount)
+                N = len(nums1)
+                #base
+                maxRobbedAmount[N], maxRobbedAmount[N-1] = 0, nums1[N-1]
+                print(maxRobbedAmount)
+                #dynamic programming
+                for i in range(N-2,-1,-1):
+                    maxRobbedAmount[i] = max(maxRobbedAmount[i+1],maxRobbedAmount[i+2]+nums[i])
+                        
+            for j in range(1,len(nums)):
+                nums2 = nums[1:len(nums)]
+                maxRobbedAmount1 = [None for _ in range(len(nums2)+1)]
+                print(maxRobbedAmount1)
+                N = len(nums2)
+                #base
+                maxRobbedAmount1[N], maxRobbedAmount1[N-1] = 0, nums2[N-1]
+                print(maxRobbedAmount1)
+                #dynamic programming
+                for i in range(N-2,-1,-1):
+                    maxRobbedAmount1[i] = max(maxRobbedAmount1[i+1],maxRobbedAmount1[i+2]+nums2[i])
+            return max(maxRobbedAmount[0], maxRobbedAmount1[0])

@@ -1,0 +1,17 @@
+class Solution:
+    def findNumbers(self, nums: List[int]) -> int:
+        countnums = [0]*len(nums)
+        for i, n in enumerate(nums):
+            count=0
+            while(n>0):
+                count=count+1
+                n=n//10
+            countnums[i] = count
+        even_count, odd_count = 0, 0
+        for num in countnums:
+            # checking condition
+            if num % 2 == 0:
+                even_count += 1
+            else:
+                odd_count += 1
+        return even_count

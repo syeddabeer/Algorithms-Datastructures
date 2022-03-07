@@ -1,0 +1,13 @@
+def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+    dis = sqrt((points[0][0]*points[0][0]) + (points[0][1]*points[0][1]))
+    print("dis", dis)
+    for i, j in enumerate(points):
+        #adds the distance as a third metric in each of the list
+        j.append( sqrt((j[0]*j[0]) + (j[1]*j[1])) )
+    print(points)
+    #sort based on the distance which is the third element and return the first 2 that are the X and Y coordinates
+    a1 = [[x[0],x[1]] for x in sorted(points, key=itemgetter(2))]
+    return [a1[x] for x in range(K)]
+
+        
+                
