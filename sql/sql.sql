@@ -891,7 +891,37 @@ Return the result table ordered by points in descending order. If two or more te
 The query result format is in the following example.
 
 ++++++++++++++++++++++++++++ START ANSWER ++++++++++++++++++++++++++++++++++++++++
+WITH CTE AS (
+    SELECT team_name,
+           CASE
+             WHEN team_id = home_team_id AND home_team_goals > away_team_goals THEN 3
+             WHEN team_id = home_team_id AND home_team_goals < away_team_goals THEN 0
+             WHEN team_id = away_team_id AND away_team_goals > home_team_goals THEN 3
+             WHEN team_id = away_team_id AND away_team_goals < home_team_goals THEN 0
+           ELSE 1
+           END AS points,
+           CASE
+             WHEN team_id = home_team_id THEN home_team_goals
+             WHEN team_id = away_team_id THEN away_team_goals
+           END AS goal_for,
+           CASE
+             WHEN team_id = home_team_id THEN away_team_goals
+             WHEN team_id = away_team_id THEN home_team_goals
+           END AS goal_against
+    FROM Teams t
+    INNER JOIN Matches m
+      ON t.team_id = m.home_team_id OR t.team_id = m.away_team_id
+)
 
+SELECT team_name,
+       COUNT(*) matches_played,
+       SUM(points) points,
+       SUM(goal_for) goal_for,
+       SUM(goal_against) goal_against,
+       SUM(goal_for) - SUM(goal_against) goal_diff
+FROM CTE
+GROUP BY team_name
+ORDER BY points DESC, goal_diff DESC, team_name;
 
 ++++++++++++++++++++++++++++ END ANSWER ++++++++++++++++++++++++++++++++++++++++++
 
