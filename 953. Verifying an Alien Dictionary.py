@@ -6,6 +6,7 @@ class Solution:
         
         for i in range(len(words)-1):
             for j in range(len(words[i])):
+                # border condition - first word is larger
                 if j >= len(words[i+1]): return False
             
                 if words[i][j] != words[i+1][j]:

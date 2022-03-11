@@ -1,61 +1,30 @@
-class TrieNode:
-    def __init__(self):
-        self.children={}
-        self.isEnd=False
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val 
+        self.left = left 
+        self.right = right 
 
 
-class Trie:
-    def __init__(self):
-        self.root=TrieNode()
+class Tree:
+    def zigzagLevelOrder(self, root):
+        if root is None:
+            return
+
+        results = []
+
+        def dfs(node, level):
+            if node is None:
+                return
+            elif level>=len(results):
+                results.append([node.val])
+            elif level%2==0: # even left to right
+                results[level].extend([node.val])
+            elif level%2!=0:
+                results[level].insert(0, node.val)
+
+            dfs(node.left, level+1)
+            dfs(node.right, level+1)
 
 
-
-    def insert(self, word):
-        node = self.root
-        for char in word:
-            if char not in node.children:
-                node.children[char]=TrieNode()
-            node=node.children[char]
-        self.isEnd=True
-
-
-    def search(self, word):
-        node=self.root 
-        for char in word:
-            if char not in node.children:
-                return False
-            node=node.children[char]
-        return node.isEnd
-
-
-    def startsWith(self, prefix):
-        node=self.root 
-        for char in word:
-            if char not in node.children:
-                return False 
-            node=node.children[char]
-        return True
-
-
-    def delete(self, word):
-
-        def recursive(node, word, i):
-
-            if len(word)==i:
-                if not node.isEnd:
-                    return False
-                node.isEnd=False
-                return len(node.children)==0
-
-            if word[i] not in node.children:
-                return False
-
-            need_delete = recursive(node.children[word[i]], word, i+1)
-
-            if need_delete:
-                node.children.pop(word[i])
-                return len(node.children)==0
-
-            return False
-
-        recursive(root, word, 0)
+        dfs(root, 0)
+        return results

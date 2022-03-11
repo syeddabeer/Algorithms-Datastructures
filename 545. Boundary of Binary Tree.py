@@ -12,46 +12,46 @@ class Solution:
 		self.right=[]
 		self.children=[]
 
-	def left_boundary(self, root):
-		if not root:
+	def left_boundary(self, node):
+		if not node:
 			return
 
-		if root.left is None and root.right is None:
+		if node.left is None and node.right is None:
 			return
 
 		# if one of above condition fails
-		self.left.append(root.val)
+		self.left.append(node.val)
 
-		if root.left:
-			self.left_boundary(root.left)
+		if node.left:
+			self.left_boundary(node.left)
 		else:
-			self.left_boundary(root.right)
+			self.left_boundary(node.right)
 
-	def right_boundary(self, root):
-		if not root:
+	def right_boundary(self, node):
+		if not node:
 			return
 
-		if root.left is None and root.right is None:
+		if node.left is None and node.right is None:
 			return
 
-		self.right.append(root.val)
+		self.right.append(node.val)
 
-		if root.right:
-			self.right_boundary(root.right)
+		if node.right:
+			self.right_boundary(node.right)
 
 		else:
-			self.right_boundary(root.left)
+			self.right_boundary(node.left)
 
-	def children_boundary(self, root, head):
-		if not root:
+	def children_boundary(self, node, head):
+		if not node:
 			return
 
-		if root!=head and root.left is None and root.right is None: #leaf node
-			self.children.append(root.val)
+		if node!=head and node.left is None and node.right is None: #leaf node
+			self.children.append(node.val)
 			return
 
-		self.children_boundary(root.left, head)
-		self.children_boundary(root.right, head)
+		self.children_boundary(node.left, head)
+		self.children_boundary(node.right, head)
 
 	def boundaryOfBinaryTree(self, root):
 		res = []
@@ -63,7 +63,10 @@ class Solution:
 		res += self.left + self.children + self.right[::-1]
 		return res
 		
-
+"""
+time: O(n)
+space: O(n)
+"""
 """
 The boundary of a binary tree is the concatenation of the root, 
 the left boundary, the leaves ordered from left-to-right, and 
