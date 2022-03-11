@@ -1,36 +1,61 @@
-class LinkedNode:
-    def __init__(self, value, tail=None):
-        self.value = value 
-        self.next = tail 
+class TrieNode:
+    def __init__(self):
+        self.children={}
+        self.isEnd=False
 
-class LinkedList:
-    def __init__(self, *start):
-        self.head = None 
-        for _ in start:
-            self.prepend(_)
 
-    def prepend(self, value):
-        self.head = LinkedNode(value, self.head)
+class Trie:
+    def __init__(self):
+        self.root=TrieNode()
 
-    def pop(self):
-        if self.head is None:
-            raise Exception("Null")
 
-        val = self.head.value 
-        self.head = self.head.next
-        return val
 
-        def remove(self, value):
-            n = self.head 
-            last = None 
-            while n != None:
-                if n.value == value:
-                    if last == None:
-                        self.head = self.head.next
-                    else:
-                        last.next = n.next
-                    return True
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char]=TrieNode()
+            node=node.children[char]
+        self.isEnd=True
 
-                last = n
-                n = n.next
+
+    def search(self, word):
+        node=self.root 
+        for char in word:
+            if char not in node.children:
+                return False
+            node=node.children[char]
+        return node.isEnd
+
+
+    def startsWith(self, prefix):
+        node=self.root 
+        for char in word:
+            if char not in node.children:
+                return False 
+            node=node.children[char]
+        return True
+
+
+    def delete(self, word):
+
+        def recursive(node, word, i):
+
+            if len(word)==i:
+                if not node.isEnd:
+                    return False
+                node.isEnd=False
+                return len(node.children)==0
+
+            if word[i] not in node.children:
+                return False
+
+            need_delete = recursive(node.children[word[i]], word, i+1)
+
+            if need_delete:
+                node.children.pop(word[i])
+                return len(node.children)==0
+
             return False
+
+        recursive(root, word, 0)
