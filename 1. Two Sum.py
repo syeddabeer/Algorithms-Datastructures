@@ -1,3 +1,13 @@
+#one loop  - efficient
+class Solution:
+    def twoSum(self, nums, target):
+        mydict={}
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in mydict:
+                return [i, mydict[complement]]
+            mydict[nums[i]]=i         
+
 #brute force
 class Solution:
     def twoSum(self, nums, target):
