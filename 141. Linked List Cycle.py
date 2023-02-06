@@ -6,3 +6,14 @@ class ListNode:
 
 class Solution:
 	def hasCycle(self, head):
+		if head is None:
+			return False
+
+		seen = set()
+		while head is not None:
+			if head not in seen:
+				seen.add(head)
+			else:
+				return True
+			head = head.next
+		return False
