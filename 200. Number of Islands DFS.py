@@ -24,7 +24,10 @@ class Solution(object):
         self.consecutiveOnes(i,j-1,grid)
         self.consecutiveOnes(i+1,j,grid)
         self.consecutiveOnes(i-i,j,grid)   
-    
+
+# time: O(N^2)
+# space: O(min(M,N))
+
 #2d list
 # grid=[["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]
 #2d list
