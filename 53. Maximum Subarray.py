@@ -9,6 +9,27 @@ class Solution:
         
         return maximumvalue
 
+    def maxSubArray2(self, num):
+        currentSum = 0
+        maximumvalue = float('-inf')
+        
+        for num in num[0:]:
+            currentSum += num
+
+            if currentSum > maximumvalue:
+                maximumvalue = currentSum
+
+            if currentSum<0:
+                currentSum=0 
+        
+        return maximumvalue
+
+myobj=Solution()
+nums1=[-2,1,-3,4,-1,2,1,-5,4]
+nums2=[5,4,-1,7,8]
+print(myobj.maxSubArray2(nums1))
+print(myobj.maxSubArray2(nums2))
+
 """
 time: O(N)
 space: O(1)
