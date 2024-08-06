@@ -1,35 +1,42 @@
-#15. 3Sum
+"""
+15. 3Sum
+"""
 class Solution:
     def threeSum(self, nums):
-        res=[]
-        nums.sort()
+        result=[] # This will store the unique triplets
+        nums.sort() # Step 1: Sort the input array
         
         length=len(nums)
         
-        for i in range(length-2):
-            if i>0 and nums[i]==nums[i-1]:
+        for i in range(length-2): # Step 2: Iterate over the array
+            if i>0 and nums[i]==nums[i-1]: # Skip duplicate elements for the first element of the triplet
                 continue
-            left = i+1
-            right = length-1
+            left = i+1 # Pointer for the second element
+            right = length-1 # Pointer for the third element
             
-            while left<right:
+            while left<right: # Step 3: Use two-pointer technique to find pairs
                 total = nums[i]+nums[left]+nums[right]
-                if total<0:
+                if total<0: # If the sum is less than the target, move the second pointer to the right
                     #-2,-1,0,1
                     left+=1
-                elif total>0:
+                elif total>0: # If the sum is greater than the target, move the third pointer to the left
                     right-=1
-                else:
-                    res.append([nums[i], nums[left], nums[right]])
+                else: # Step 4: Check if the triplet sum equals the target (0)
+                    result.append([nums[i], nums[left], nums[right]])
+                    left+=1 # Move the second pointer to the right
+                    right-=1 # Move the third pointer to the left
+                    
+                    # Step 5: Skip duplicates for the second element
                     while left<right and nums[left]==nums[left+1]:
-                        left+=1
+                        left+=1  
                     while left<right and nums[right]==nums[right-1]:
-                        right-=1
-                    left+=1
-                    right-=1
-        return res
+                        right-=1 
+                    
+        return result # Return the list of unique triplets
 
-
+myobj=Solution()
+nums = [-1,0,1,2,-1,-4]
+print(myobj.threeSum(nums))
 
 """
 time: O(n^2) - not confirmed
@@ -53,3 +60,4 @@ Example 3:
 
 Input: nums = [0]
 Output: []
+"""
