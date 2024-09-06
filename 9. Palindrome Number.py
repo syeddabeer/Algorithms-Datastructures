@@ -31,6 +31,10 @@ class Solution(object):
         return reversed==x
 
 """
+for follow up method:
+Time Complexity: (O(\log_{10} x))
+Space Complexity: (O(1))
+****
 Given an integer x, return true if x is a 
 palindrome
 , and false otherwise.
