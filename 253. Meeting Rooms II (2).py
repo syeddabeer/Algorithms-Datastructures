@@ -3,10 +3,8 @@ class Solution:
 	def minMeetingRooms(self, intervals):
 		start=sorted([i[0] for i in intervals])
 		end=sorted([i[1] for i in intervals])
-
 		result = 0 # in the whole, what is max room
 		count = 0 # at a time, how many rooms are booked.
-
 		s=0 # start index
 		e=0 # end index
 		while s<len(intervals):
@@ -17,7 +15,6 @@ class Solution:
 				e+=1
 				count-=1
 			result = max(result, count)
-
 		return result 
 
 """

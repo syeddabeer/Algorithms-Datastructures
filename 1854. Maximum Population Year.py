@@ -4,7 +4,6 @@ class Solution:
         for ybirth, ydeath in logs:
             for year in range(ybirth, ydeath):
                 dict[year] += 1
-        
         temp = sorted(dict.items(), key=lambda x:(-x[1], x[0]))
         return temp[0][0]
         

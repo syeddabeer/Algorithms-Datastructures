@@ -13,7 +13,6 @@ class Solution:
 				dict[sum]+=1
 			else:
 				dict[sum]=1
-			
 		return count
 
 """

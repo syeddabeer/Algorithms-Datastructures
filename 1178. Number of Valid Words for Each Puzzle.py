@@ -18,7 +18,6 @@ class Solution:
 						trie[node][i] = len(trie) - 1
 					node = trie[node][i]
 				count[node] += 1
-
 		# search for valid words
 		def dfs(node, has_first):
 			total = count[node] if has_first else 0
@@ -27,7 +26,6 @@ class Solution:
 				if trie[node][i]:
 					total+=dfs(trie[node][i], has_first or letter == puzzle[0])
 			return total
-
 		result=[]
 		for puzzle in puzzles:
 			result.append(dfs(0, False))
@@ -35,19 +33,14 @@ class Solution:
 
 
 from collections import defaultdict
-
 class Solution:
     def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:
         n = len(words)
         m = len(puzzles)
-        
         freq = defaultdict(int)   # Hash the words in this dictionary
-        
         for w in words:
             freq[tuple(sorted(list(set(w))))] += 1
-        
         ans = [0]*m
-        
         for i, w in enumerate(puzzles):
             puzzleSet = list(w)
 			# Try all subsets of puzzles[i] because 2nd condition in question is word should be subset of puzzle
@@ -59,9 +52,35 @@ class Solution:
                     x = x >> 1  # Divide x by 2
                 ans[i] += freq[tuple(sorted(puzzleSubSet))]   # Add answer of that subset for puzzles[i]
         return ans
-# With respect to a given puzzle string, a word is valid if both the following conditions are satisfied:
-# word contains the first letter of puzzle.
-# For each letter in word, that letter is in puzzle.
-# For example, if the puzzle is "abcdefg", then valid words are "faced", "cabbage", and "baggage", while
-# invalid words are "beefed" (does not include 'a') and "based" (includes 's' which is not in the puzzle).
-# Return an array answer, where answer[i] is the number of words in the given word list words that is valid with respect to the puzzle puzzles[i].
+
+"""
+With respect to a given puzzle string, a word is valid if both the following conditions are satisfied:
+word contains the first letter of puzzle.
+For each letter in word, that letter is in puzzle.
+For example, if the puzzle is "abcdefg", then valid words are "faced", "cabbage", and "baggage", while
+invalid words are "beefed" (does not include 'a') and "based" (includes 's' which is not in the puzzle).
+Return an array answer, where answer[i] is the number of words in the given word list words that is valid with respect to the puzzle puzzles[i].
+Example 1:
+Input: words = ["aaaa","asas","able","ability","actt","actor","access"], puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"]
+Output: [1,1,3,2,4,0]
+Explanation: 
+1 valid word for "aboveyz" : "aaaa" 
+1 valid word for "abrodyz" : "aaaa"
+3 valid words for "abslute" : "aaaa", "asas", "able"
+2 valid words for "absoryz" : "aaaa", "asas"
+4 valid words for "actresz" : "aaaa", "asas", "actt", "access"
+There are no valid words for "gaswxyz" cause none of the words in the list contains letter 'g'.
+Example 2:
+Input: words = ["apple","pleas","please"], puzzles = ["aelwxyz","aelpxyz","aelpsxy","saelpxy","xaelpsy"]
+Output: [0,1,3,2,0]
+ 
+
+Constraints:
+
+1 <= words.length <= 105
+4 <= words[i].length <= 50
+1 <= puzzles.length <= 104
+puzzles[i].length == 7
+words[i] and puzzles[i] consist of lowercase English letters.
+Each puzzles[i] does not contain repeated characters.
+""""

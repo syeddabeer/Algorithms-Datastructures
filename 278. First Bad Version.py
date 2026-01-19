@@ -4,10 +4,6 @@
 # def isBadVersion(version):
 class Solution:
     def firstBadVersion(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
         left = 0
         right = n
         while left<right:

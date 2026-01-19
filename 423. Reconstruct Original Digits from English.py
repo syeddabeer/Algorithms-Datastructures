@@ -2,7 +2,6 @@ class Solution:
 	def originalDigits(self, s):
 		# building hashmap letter -> its frequency
         count = collections.Counter(s)
-        
         # building hashmap digit -> its frequency 
         out = {}
         # letter "z" is present only in "zero"
@@ -25,7 +24,6 @@ class Solution:
         out["9"] = count["i"] - out["5"] - out["6"] - out["8"]
         # letter "n" is present in "one", "nine", and "seven"
         out["1"] = count["n"] - out["7"] - 2 * out["9"]
-
         # building output string
         output = [key * out[key] for key in sorted(out.keys())]
         return "".join(output)

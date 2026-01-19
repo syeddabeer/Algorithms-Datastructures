@@ -4,10 +4,8 @@ class KthLargest:
         self.k = k
         self.heap = nums 
         heapq.heapify(self.heap)
-        
         while len(self.heap)>self.k:
-            heapq.heappop(self.heap)
-            
+            heapq.heappop(self.heap) 
     def add(self, val):
         heapq.heappush(self.heap, val)
         while len(self.heap)>self.k:
@@ -17,31 +15,16 @@ class KthLargest:
 
 """
 703. Kth Largest Element in a Stream
-Easy
-
-1906
-
-1113
-
-Add to List
-
-Share
 Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
-
 Implement KthLargest class:
-
 KthLargest(int k, int[] nums) Initializes the object with the integer k and the stream of integers nums.
 int add(int val) Appends the integer val to the stream and returns the element representing the kth largest element in the stream.
- 
-
 Example 1:
-
 Input
 ["KthLargest", "add", "add", "add", "add", "add"]
 [[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]]
 Output
 [null, 4, 5, 5, 8, 8]
-
 Explanation
 KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]);
 kthLargest.add(3);   // return 4

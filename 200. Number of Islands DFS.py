@@ -13,7 +13,6 @@ class Solution(object):
                     islands = islands + 1 #islands += 1
                     self.consecutiveOnes(i,j,grid)
         return islands
-    
     def consecutiveOnes(self,i,j,grid):
         #print(str(i)+" "+str(j))
         if i < 0 or j < 0 or i == len(grid) or j == len(grid[0]) or grid[i][j]=="0":
@@ -23,8 +22,7 @@ class Solution(object):
         self.consecutiveOnes(i,j+1,grid)
         self.consecutiveOnes(i,j-1,grid)
         self.consecutiveOnes(i+1,j,grid)
-        self.consecutiveOnes(i-i,j,grid)   
-
+        self.consecutiveOnes(i-1,j,grid)   
 # time: O(N^2)
 # space: O(min(M,N))
 

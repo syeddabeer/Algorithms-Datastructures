@@ -1,5 +1,4 @@
 # Function for nth Fibonacci number
- 
 def fib(n):
     if n < 0:
         print("invalid number")
