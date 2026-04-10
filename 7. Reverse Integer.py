@@ -1,24 +1,25 @@
 class Solution:
-    def reverse(self, x: int) -> int:
+    def reverse(self, x):
         min=-2**31
         max=2**31 - 1
-        if x not in range(min, max): # handle buffer overflow
+        if x< min or x>max: # handle buffer overflow
             return 0 
         elif x>=0:
             a = int(str(x)[::-1])
-            if a not in range(min, max):
+            if a< min or a>max:
                 return 0
             else:
                 return a
         else:
             a = int(str(x*-1)[::-1])
             a = a*-1
-            if a not in range(min, max):
+            if a< min or a>max:
                 return 0
             else:
                 return a
 """
-time complexity for above is O(log(n))
+time complexity for above is O(d) = O(number of digits) = O(log(n))
+space complexity for above is O(d) = O(number of digits) = O(log(n))
 
 Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
 Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
